@@ -1,0 +1,38 @@
+@use "../abstracts" as a;
+
+/* Makes psesudo-element behaves the same as well */
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%; // 1rem = 10px
+
+  @include a.respond(big-desktop) {
+    font-size: 75%; // 1rem = 12px
+  }
+  @include a.respond(tab-land) {
+    font-size: 56.25%; // 1rem = 9px
+  }
+  @include a.respond(tab-port) {
+    font-size: 50%; // 1rem = 8px
+  }
+}
+
+body {
+  box-sizing: border-box;
+  padding: 2rem;
+
+  @include a.respond(tab-port) {
+    padding: 0;
+  }
+}
+
+::selection {
+  background-color: a.$color-primary;
+  color: a.$color-white;
+}

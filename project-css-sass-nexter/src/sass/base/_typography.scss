@@ -1,0 +1,48 @@
+@use "../abstracts" as a;
+
+%heading {
+  font-family: var(--ff-display);
+  font-weight: 400;
+}
+
+.heading-1 {
+  @extend %heading;
+  font-size: 4.5rem;
+  color: var(--clr-grey-light-1);
+  line-height: 1;
+}
+
+.heading-2 {
+  @extend %heading;
+  font-size: 4rem;
+  font-style: italic;
+  line-height: 1;
+
+  &--light {
+    color: var(--clr-grey-light-1);
+  }
+
+  &--dark {
+    color: var(--clr-grey-dark-1);
+  }
+}
+
+.heading-3 {
+  @extend %heading;
+  font-size: 1.6rem;
+  color: var(--clr-primary);
+  text-transform: uppercase;
+}
+
+.heading-4 {
+  @extend %heading;
+  font-size: 1.9rem;
+
+  &--light {
+    color: var(--clr-grey-light-1);
+  }
+
+  &--dark {
+    color: var(--clr-grey-dark-1);
+  }
+}
