@@ -1,0 +1,13 @@
+@use "base/reset.scss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.pokemon {
+  display: inline-block;
+  text-align: center;
+}
+
+.pokemon img {
+  display: block;
+}
