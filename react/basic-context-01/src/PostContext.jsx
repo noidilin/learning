@@ -1,5 +1,11 @@
 /* eslint-disable react/prop-types */
-import { useContext, createContext, useState } from 'react';
+
+// NOTE: only optimize context when these things happens in the same time
+// 1. state in the context need to changes frequently
+// 2. context has many consumers
+// 3. app is slow due to this context
+
+import { useContext, createContext, useState, useMemo } from 'react';
 import { faker } from '@faker-js/faker';
 
 function createRandomPost() {
@@ -35,16 +41,23 @@ function PostProvider({ children }) {
   function handleClearPosts() {
     setPosts([]);
   }
+
+  // NOTE: since context provider will re-render once its parent component re-render,
+  // the value object will be seem as a different object, and cause its consumer also re-render.
+  // We usually preserve one state per context to avoid the consumer update by irrelevant value update.
+  const value = useMemo(() => {
+    return {
+      posts: searchedPosts,
+      onAddPost: handleAddPost,
+      onClearPosts: handleClearPosts,
+      searchQuery,
+      setSearchQuery,
+    };
+  }, [searchedPosts, searchQuery]);
+
   return (
-    <PostContext.Provider
-      value={{
-        posts: searchedPosts,
-        onAddPost: handleAddPost,
-        onClearPosts: handleClearPosts,
-        searchQuery,
-        setSearchQuery,
-      }}
-    >
+    <PostContext.Provider value={value}>
+      {/* NOTE: consumer component can avoid wasted render */}
       {children}
     </PostContext.Provider>
   );
