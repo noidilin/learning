@@ -18,9 +18,10 @@ function City() {
   const { getCity, currentCity, isLoading } = useCities();
 
   useEffect(() => {
+    // NOTE: since getCity() will update state and cause re-render,
+    // which will lead to getCity() got re-created, and finally result in an infinite loop.
     getCity(id);
-    // return () => {};
-  }, [id]);
+  }, [id, getCity]);
 
   const { cityName, emoji, date, notes } = currentCity;
 
