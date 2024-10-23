@@ -1,48 +1,32 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
 
 import Places from "./Places.jsx";
 import Error from "./Error.jsx";
 import { sortPlacesByDistance } from "../loc.js";
 import { fetchAvailablePlaces } from "../http.js";
+import { useFetch } from "../hooks/useFetch.js";
+
+async function fetchSortedPlaces() {
+  const places = await fetchAvailablePlaces();
+  return new Promise((res, rej) => {
+    navigator.geolocation.getCurrentPosition((position) => {
+      const sortedPlaces = sortPlacesByDistance(
+        places,
+        position.coords.latitude,
+        position.coords.longitude,
+      );
+      res(sortedPlaces);
+      rej("getCurrentPosition failed.");
+    });
+  });
+}
 
 export default function AvailablePlaces({ onSelectPlace }) {
-  const [isFetching, setIsFetching] = useState(false);
-  const [availablePlaces, setAvailablePlaces] = useState([]);
-  const [error, setError] = useState();
-
-  // NOTE: fetch available places from server
-  useEffect(() => {
-    async function fetchPlaces() {
-      setIsFetching(true);
-      try {
-        const places = await fetchAvailablePlaces();
-
-        // NOTE: although getCurrentPosition() is not synchronous, we can't use await keyword at it
-        navigator.geolocation.getCurrentPosition((position) => {
-          const sortedPlaces = sortPlacesByDistance(
-            places,
-            position.coords.latitude,
-            position.coords.longitude,
-          );
-          setAvailablePlaces(sortedPlaces);
-          // NOTE: therefore setIsFetching needs to be placed at the end of the callback of getCurrentPosition
-          setIsFetching(false);
-        });
-      } catch (error) {
-        setError({
-          message:
-            error.message || "Could not fetch places, please try again later.",
-        });
-        // NOTE: in addition we need a setIsFetching here as well
-        setIsFetching(false);
-      }
-      // NOTE: if place at here, setIsFetching won't wait getCurrentPosition finished.
-      // setIsFetching(false);
-    }
-
-    fetchPlaces();
-  }, []);
+  const {
+    isFetching,
+    error,
+    fetchedData: availablePlaces,
+  } = useFetch(fetchSortedPlaces, []);
 
   if (error) {
     return <Error title="An error occurred!" message={error.message} />;
