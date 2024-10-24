@@ -16,12 +16,21 @@ function Cart() {
     0,
   );
 
-  function handleCloseCart() {
+  function handleClose() {
     userProgressCtx.hideCart();
   }
 
+  function handleGoToCheckout() {
+    userProgressCtx.showCheckout();
+  }
+
   return (
-    <Modal className='cart' open={userProgressCtx.progress === 'cart'}>
+    <Modal
+      className='cart'
+      open={userProgressCtx.progress === 'cart'}
+      // NOTE: prevent the state not sync with the UI when close modal with `ESC` key which is a browser feature
+      onClose={handleClose}
+    >
       <h2>Your Cart</h2>
       <ul>
         {cartCtx.items.map((item) => (
@@ -37,10 +46,12 @@ function Cart() {
       </ul>
       <p className='cart-total'>{currencyFormatter.format(cartTotal)}</p>
       <p className='modal-actions'>
-        <Button textOnly onClick={handleCloseCart}>
+        <Button textOnly onClick={handleClose}>
           Close
         </Button>
-        <Button>Go to Checkout </Button>
+        {cartCtx.items.length > 0 && (
+          <Button onClick={handleGoToCheckout}>Go to Checkout </Button>
+        )}
       </p>
     </Modal>
   );
