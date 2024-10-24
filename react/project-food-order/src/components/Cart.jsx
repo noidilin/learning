@@ -29,7 +29,8 @@ function Cart() {
       className='cart'
       open={userProgressCtx.progress === 'cart'}
       // NOTE: prevent the state not sync with the UI when close modal with `ESC` key which is a browser feature
-      onClose={handleClose}
+      // since progress changed from cart to checkout will also trigger onClose, we need to add a condition
+      onClose={userProgressCtx.progress === 'cart' ? handleClose : null}
     >
       <h2>Your Cart</h2>
       <ul>
