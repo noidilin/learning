@@ -1,0 +1,44 @@
+@use "./base/reset.scss";
+@import "https://fonts.googleapis.com/css2?family=Lato&display=swap";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  min-height: 100vh;
+  display: grid;
+  place-content: center;
+}
+
+#sports li {
+  @apply mb-12 p-5 border-4 border-gray-500 rounded-lg cursor-pointer;
+}
+
+.div2 {
+  border: solid 10px #fff;
+  border-radius: 20px;
+  font-size: 3.5rem;
+  text-align: center;
+  padding: 80px;
+  color: orange;
+}
+
+.div1 {
+  border: solid 5px #fff;
+  border-radius: 20px;
+  font-size: 3.5rem;
+  text-align: center;
+  padding: 50px;
+  color: red;
+}
+
+button {
+  display: block;
+  font-size: 30px;
+  background: none;
+  border: solid 2px #fff;
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 30px;
+  margin-top: 10px;
+}

@@ -1,0 +1,109 @@
+@use "../abstracts" as a;
+
+.container {
+  display: grid;
+  grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
+
+  // limit the repeated column not wider than 140px
+  // then use two "1fr" to center the repreated column
+  // (but the "1fr" will has a least 6rem width)
+  grid-template-columns:
+    [sidebar-start] 8rem
+    [sidebar-end full-start] minmax(6rem, 1fr)
+    [center-start]
+    repeat(8, [col-start] minmax(min-content, 14rem) [col-end])
+    [center-end]
+    minmax(6rem, 1fr)
+    [full-end];
+
+  @include a.respond(tab-land) {
+    grid-template-rows: 6rem 80vh min-content 40vw repeat(3, min-content);
+    grid-template-columns:
+      [full-start] minmax(6rem, 1fr)
+      [center-start]
+      repeat(8, [col-start] minmax(min-content, 14rem) [col-end])
+      [center-end]
+      minmax(6rem, 1fr)
+      [full-end];
+  }
+
+  @include a.respond(tab-port) {
+    // most of the row used "min-content" so just get rid of those properties
+    grid-template-rows: 6rem calc(100vh - 6rem);
+  }
+}
+
+.sidebar {
+  // background-color: var(--clr-primary);
+  grid-column: sidebar-start / sidebar-end;
+  grid-row: 1 / -1;
+
+  @include a.respond(tab-land) {
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+  }
+}
+
+.header {
+  // background-color: var(--clr-grey-dark-1);
+  grid-column: full-start / col-end 6;
+
+  @include a.respond(tab-port) {
+    grid-column: 1 / -1;
+  }
+
+  @include a.respond(phone) {
+    padding: 5rem;
+  }
+}
+
+.realtors {
+  // background-color: var(--clr-secondary);
+  grid-column: col-start 7 / full-end;
+
+  @include a.respond(tab-port) {
+    grid-column: 1 / -1;
+  }
+}
+
+.features {
+  // background-color: var(--clr-grey-light-2);
+  grid-column: center-start / center-end;
+}
+
+.story {
+  &__pictures {
+    // background-color: var(--clr-primary);
+    grid-column: full-start / col-end 4;
+
+    @include a.respond(tab-port) {
+      grid-column: 1 / -1;
+      padding: 6rem;
+    }
+  }
+
+  &__content {
+    // background-color: var(--clr-grey-light-2);
+    grid-column: col-start 5 / full-end;
+
+    @include a.respond(tab-port) {
+      grid-column: 1 / -1;
+      grid-row: 5 / 6;
+    }
+  }
+}
+
+.homes {
+  // background-color: var(--clr-secondary);
+  grid-column: center-start / center-end;
+}
+
+.gallery {
+  // background-color: var(--clr-grey-dark-1);
+  grid-column: full-start / full-end;
+}
+
+.footer {
+  // background-color: var(--clr-secondary);
+  grid-column: full-start / full-end;
+}

@@ -1,0 +1,21 @@
+@use "../abstracts" as a;
+
+.btn {
+  background-color: var(--clr-primary);
+  color: #fff;
+  border: none;
+  border-radius: 0;
+  padding: 1.8rem 3rem;
+
+  font-family: var(--ff-display);
+  font-size: 1.5rem;
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  transition: all 0.2s;
+
+  &:hover {
+    background-color: var(--clr-primary-dark);
+  }
+}
