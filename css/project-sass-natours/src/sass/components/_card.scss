@@ -1,0 +1,245 @@
+@use "../abstracts" as a;
+
+.card {
+  // functionality
+  perspective: 150rem;
+  -moz-perspective: 150rem;
+  position: relative;
+
+  //assign fixed height to parent because of "position: absolute"
+  height: 52rem;
+
+  &__side {
+    // assign fixed height to child because of "position: absolute"
+    height: 52rem;
+    width: 100%;
+    font-size: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 1.5rem 4rem rgba(a.$color-black, 0.15);
+    transition: all 0.8s ease;
+
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+
+    // fix the image overflowing issue
+    overflow: hidden;
+
+    &--front {
+      background-color: a.$color-white;
+    }
+    &--back {
+      transform: rotateY(180deg);
+
+      &-1 {
+        background-image: linear-gradient(
+          to right bottom,
+          a.$color-secondary-light,
+          a.$color-secondary-dark
+        );
+      }
+
+      &-2 {
+        background-image: linear-gradient(
+          to right bottom,
+          a.$color-primary-light,
+          a.$color-primary-dark
+        );
+      }
+
+      &-3 {
+        background-image: linear-gradient(
+          to right bottom,
+          a.$color-tertiary-light,
+          a.$color-tertiary-dark
+        );
+      }
+    }
+  }
+
+  &:hover &__side--front {
+    transform: rotateY(-180deg);
+  }
+
+  &:hover &__side--back {
+    transform: rotateY(0deg);
+  }
+
+  // front side styling
+  &__picture {
+    background-size: cover;
+    height: 23rem;
+    background-blend-mode: screen;
+
+    -webkit-clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+    clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+
+    // border radius in the parent won't work with the "clip-path" property
+    border-top-left-radius: 0.5rem;
+    border-top-right-radius: 0.5rem;
+
+    &-1 {
+      background-image: linear-gradient(
+          to right bottom,
+          a.$color-secondary-light,
+          a.$color-secondary-dark
+        ),
+        url(../../assets/nat-5.jpg);
+    }
+
+    &-2 {
+      background-image: linear-gradient(
+          to right bottom,
+          a.$color-primary-light,
+          a.$color-primary-dark
+        ),
+        url(../../assets/nat-6.jpg);
+    }
+
+    &-3 {
+      background-image: linear-gradient(
+          to right bottom,
+          a.$color-tertiary-light,
+          a.$color-tertiary-dark
+        ),
+        url(../../assets/nat-7.jpg);
+    }
+  }
+
+  &__heading {
+    font-size: 2.8rem;
+    font-weight: 300;
+    text-transform: uppercase;
+    color: a.$color-white;
+    text-align: right;
+    position: absolute;
+    top: 12rem;
+    right: 2rem;
+    width: 75%;
+  }
+
+  &__heading-span {
+    padding: 1rem 1.5rem;
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+
+    &--1 {
+      background-image: linear-gradient(
+        to right bottom,
+        rgba(a.$color-secondary-light, 0.85),
+        rgba(a.$color-secondary-dark, 0.85)
+      );
+    }
+
+    &--2 {
+      background-image: linear-gradient(
+        to right bottom,
+        rgba(a.$color-primary-light, 0.85),
+        rgba(a.$color-primary-dark, 0.85)
+      );
+    }
+
+    &--3 {
+      background-image: linear-gradient(
+        to right bottom,
+        rgba(a.$color-tertiary-light, 0.85),
+        rgba(a.$color-tertiary-dark, 0.85)
+      );
+    }
+  }
+
+  &__details {
+    padding: 3rem;
+
+    ul {
+      list-style: none;
+      width: 80%;
+      margin: 0 auto;
+
+      li {
+        text-align: center;
+        font-size: 1.5rem;
+        padding: 1rem;
+
+        &:not(:last-child) {
+          border-bottom: 1px solid a.$color-gray-light-2;
+        }
+      }
+    }
+  }
+
+  // Back side styling
+  &__cta {
+    @include a.absCenter;
+
+    width: 90%;
+    text-align: center;
+  }
+
+  &__price-box {
+    color: a.$color-white;
+    margin-bottom: 8rem;
+  }
+
+  &__price-only {
+    font-size: 1.4rem;
+    text-transform: uppercase;
+  }
+
+  &__price-value {
+    font-size: 6rem;
+    font-weight: 100;
+  }
+
+  // @include a.respond(tab-port) {
+  @media only screen and (max-width: 56.25em), only screen and (hover: none) {
+    //assign fixed height to parent because of "position: absolute"
+    height: auto;
+    border-radius: 0.5rem;
+    background-color: a.$color-white;
+    box-shadow: 0 1.5rem 4rem rgba(a.$color-black, 0.15);
+
+    &__side {
+      // assign fixed height to child because of "position: absolute"
+      height: auto;
+      position: relative;
+      box-shadow: none;
+
+      &--back {
+        transform: rotateY(0deg);
+        -webkit-clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+        clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 100%);
+      }
+    }
+
+    &:hover &__side--front {
+      transform: rotateY(0deg);
+    }
+
+    &__details {
+      padding: 1rem 3rem;
+    }
+
+    // Back side styling
+    &__cta {
+      position: relative;
+      top: 0;
+      left: 0;
+      transform: translate(0);
+      width: 90%;
+      margin: 0 auto;
+      padding: 6rem 3rem 3rem 3rem;
+    }
+
+    &__price-box {
+      margin-bottom: 1rem;
+    }
+
+    &__price-value {
+      font-size: 4rem;
+    }
+  }
+}

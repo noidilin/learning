@@ -1,0 +1,21 @@
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  width: 110px;
+}
+
+.nav-item {
+  margin-left: 3rem;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #0a2463;
+  font-size: 0.95rem;
+  font-weight: 500;
+}

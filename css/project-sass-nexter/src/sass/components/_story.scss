@@ -1,0 +1,72 @@
+@use "../abstracts" as a;
+
+// @debug rgba(a.$clr-secondary, 0.5);
+
+.story {
+  &__pictures {
+    background-color: var(--clr-primary);
+    background-image: linear-gradient(
+        rgba(a.$clr-primary, 0.5),
+        rgba(a.$clr-primary, 0.5)
+      ),
+      url(../../assets/back.jpg);
+    background-size: cover;
+
+    display: grid;
+    grid-template-rows: repeat(6, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+    align-items: center;
+  }
+
+  &__img--1 {
+    width: 100%;
+    grid-row: 2 / 6;
+    grid-column: 2 / 6;
+
+    box-shadow: var(--sd-dark);
+
+    @include a.respond(tab-port) {
+      grid-column: 1 / 5;
+      grid-row: 1 / -1;
+      width: 100%;
+    }
+  }
+
+  &__img--2 {
+    grid-row: 4 / 6;
+    grid-column: 4 / 7;
+
+    // scale up the img so it can overlap other section
+    width: 115%;
+    z-index: 20;
+
+    box-shadow: var(--sd-dark);
+
+    @include a.respond(tab-port) {
+      grid-row: 1 / -1;
+      width: 100%;
+    }
+  }
+
+  &__content {
+    background-color: var(--clr-grey-light-1);
+    padding: 6rem 8vw;
+
+    // Use flex to layout
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: center;
+    // align-items: start;
+
+    // use grid to layout
+    display: grid;
+    align-content: center;
+    justify-items: start;
+  }
+
+  &__text {
+    font-size: 1.5rem;
+    font-style: italic;
+    margin-bottom: 4rem;
+  }
+}

@@ -1,0 +1,39 @@
+@use "../abstracts/variables" as *;
+@use "../abstracts/mixins" as *;
+
+/* Buttons */
+
+@each $color, $value in $theme-colors {
+  .btn-#{$color} {
+    @include button($value);
+  }
+}
+
+.btn-link {
+  border: 0;
+  text-decoration: none;
+  background: transparent;
+  color: #838ea4;
+  font-weight: 500;
+  font-size: 0.975rem;
+  padding: 1rem 1.25rem;
+}
+
+.btn-link:hover {
+  color: #ff595e;
+}
+.btn-icon {
+  border: 0;
+  text-decoration: none;
+  color: #838ea4;
+  font-weight: 500;
+  font-size: 0.975rem;
+  padding: 1rem 1.25rem;
+  border-radius: 4px;
+  display: flex;
+  width: 50px;
+  height: 50px;
+  border-radius: 100%;
+  justify-content: center;
+  align-items: center;
+}

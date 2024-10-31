@@ -1,0 +1,47 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+} /* 1. Improve box-sizing model and remove default margin */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+} /* 2. Improve text rendering */
+h1,
+h2,
+h3,
+h4,
+button,
+input,
+label {
+  line-height: 1.1;
+} /* 2. Improve text rendering */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+} /* 3. Improve media defaults */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+} /* 4. Remove built-in form typography styles */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word; /* hyphens: auto; */
+} /* 5. Avoid text overflows */
+#root,
+#next {
+  isolation: isolate;
+} /* 6. Create a root stacking context */

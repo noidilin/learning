@@ -1,0 +1,33 @@
+// COLOR VARIABLES
+$clr-primary: #c69963;
+$clr-primary-dark: #b28451;
+
+$clr-secondary: #101d2c;
+
+$clr-grey-light-1: #f9f7f6;
+$clr-grey-light-2: #aaa;
+
+$clr-grey-dark-1: #54483a;
+$clr-grey-dark-2: #6d5d4b;
+
+// FONT VARIABLES
+// $ff-primary: "Nunito", sans-serif;
+// $ff-display: "Josefin Sans", sans-serif;
+
+:root {
+  --clr-primary: rgb(198, 153, 99); // #c69963
+  --clr-primary-dark: rgb(178, 132, 81); // #b28451
+
+  --clr-secondary: rgb(16, 29, 44); // #101d2c
+
+  --clr-grey-light-1: rgb(249, 247, 246); // #f9f7f6
+  --clr-grey-light-2: rgb(170, 170, 170); // #aaa
+
+  --clr-grey-dark-1: rgb(84, 72, 58); // #54483a
+  --clr-grey-dark-2: rgb(109, 93, 75); // #6d5d4b
+
+  --ff-primary: "Nunito", sans-serif;
+  --ff-display: "Josefin Sans", sans-serif;
+
+  --sd-dark: 0 2rem 5rem rgba(0, 0, 0, 0.1);
+}

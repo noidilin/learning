@@ -1,0 +1,26 @@
+palette = "scutum"
+
+[palettes.scutum]
+# special
+clr_fg = "#eaeaea"
+clr_fg_dim = "#b3b3b3"
+clr_text = "#191919"
+clr_selection = "#3f403f"
+# normal
+clr_black = "#474747"
+clr_blue = "#899796"
+clr_cyan = "#769997"
+clr_green = "#a2ae4f"
+clr_magenta = "#c0c88e"
+clr_red = "#cd8185"
+clr_white = "#dadac8"
+clr_yellow = "#cdb67f"
+# bright
+clr_bright_black = "#606060"
+clr_bright_blue = "#9da8ae"
+clr_bright_cyan = "#8eb9b7"
+clr_bright_green = "#b9c758"
+clr_bright_magenta = "#d8e09f"
+clr_bright_red = "#d28e91"
+clr_bright_white = "#fafaed"
+clr_bright_yellow = "#e8cd8f"

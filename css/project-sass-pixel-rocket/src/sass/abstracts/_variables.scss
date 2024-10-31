@@ -1,0 +1,15 @@
+// #838ea4 body color, btn text color
+// #0a2463 heading color, btn bg color
+// #ff595e button bg color
+// white button text color
+// 500 font-weight normal
+
+$red: #ff595e;
+$blue: #0a2463;
+$yellow: #f9cb40;
+
+$theme-colors: (
+  "primary": $red,
+  "secondary": $blue,
+  "warning": $yellow,
+);

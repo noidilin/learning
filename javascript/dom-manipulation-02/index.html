@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Global Font Links -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto&display=swap"
+      rel="stylesheet"
+    />
+    <!-- FontAwesome Link -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <title>DOM Manipulation P2</title>
+  </head>
+
+  <body>
+    <!-- Project 5: To-Do List -->
+    <div
+      id="wrapper"
+      class="flex items-center justify-center h-screen bg-stone-800"
+    >
+      <div id="container" class="">
+        <div
+          id="add-task-container"
+          class="flex px-4 py-6 mb-5 shadow-md w-80 bg-stone-200 rounded-2xl"
+        >
+          <input
+            type="text"
+            placeholder="Enter Task"
+            id="input-task"
+            class="flex-1 p-2 mr-3 text-lg rounded-xl"
+          />
+          <button
+            id="add-task"
+            class="flex-auto p-2 text-lg transition border-2 rounded-lg bg-stone-50 text-emerald-600 border-emerald-600"
+          >
+            <i class="fa-solid fa-plus"></i>
+          </button>
+        </div>
+
+        <div id="task-container">
+          <!-- <div
+            class="flex justify-center w-full p-2 mb-2 rounded-lg shadow-md bg-stone-50"
+          >
+            <li class="flex-grow p-2 text-xl list-none">test task</li>
+            <button
+              class="flex-1 mr-2 text-lg border-2 rounded-lg cursor-pointer text-emerald-600 border-emerald-600 bg-stone-50 hover:bg-emerald-600 hover:text-stone-50"
+            >
+              <i class="fa-solid fa-check"></i>
+            </button>
+            <button
+              class="flex-1 mr-2 text-lg text-red-600 border-2 border-red-600 rounded-lg cursor-pointer bg-stone-50 hover:bg-red-600 hover:text-stone-50"
+            >
+              <i class="fa-solid fa-trash-can"></i>
+            </button>
+          </div> -->
+        </div>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
+
+<!-- Project 4: Stop-Watch -->
+<!-- 
+    <div
+      id="wrapper"
+      class="flex items-center justify-center h-screen bg-stone-700"
+    >
+      <div id="container" class="w-3/5 bg-gray-200 shadow-sm h-60 rounded-3xl">
+        <div id="timer" class="w-full p-8 mx-auto text-center text-7xl">
+          00:00:00
+        </div>
+        <div id="buttons" class="text-center">
+          <button id="startStopBtn" class="mx-2 border-0">
+            <i
+              class="w-12 p-3 text-3xl text-stone-800 fa-solid fa-play"
+              id="play"
+            ></i>
+          </button>
+          <button id="resetBtn">
+            <i
+              class="w-12 p-3 text-3xl text-stone-800 fa-solid fa-arrow-rotate-left"
+              id="reset"
+            ></i>
+          </button>
+        </div>
+      </div>
+    </div> 
+-->
+
+<!-- Project 3: Accordion -->
+<!-- 
+    <div
+      id="wrapper"
+      class="flex items-center justify-center h-screen bg-slate-700"
+    >
+      <div id="accordion" class="w-2/3 p-8 bg-gray-200 rounded-3xl">
+        <h2
+          id="accordion-title"
+          class="mb-8 text-4xl font-semibold text-center"
+        >
+          Frequently Asked Questions
+        </h2>
+        <div class="content-container">
+          <div
+            class="relative px-0 py-5 text-xl border-b border-gray-800 cursor-pointer question duration-500 after:content-['+'] after:absolute after:-right-2"
+          >
+            What is the return Policy?
+          </div>
+          <div
+            class="w-full h-0 pt-4 overflow-hidden text-xl duration-500 answer"
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis,
+            beatae dolores voluptate consequuntur, amet modi molestiae quasi
+            dicta hic id facere quam pariatur a earum fugit sint? Corrupti,
+            doloribus esse.
+          </div>
+        </div>
+        <div class="content-container">
+          <div
+            class="relative px-0 py-5 text-xl border-b border-gray-800 cursor-pointer question duration-500 after:content-['+'] after:absolute after:-right-2"
+          >
+            When will i receive my order?
+          </div>
+          <div
+            class="w-full h-0 pt-4 overflow-hidden text-xl duration-500 answer"
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis,
+            beatae dolores voluptate consequuntur, amet modi molestiae quasi
+            dicta hic id facere quam pariatur a earum fugit sint? Corrupti,
+            doloribus esse.
+          </div>
+        </div>
+        <div class="content-container">
+          <div
+            class="relative px-0 py-5 text-xl border-b border-gray-800 cursor-pointer question duration-500 after:content-['+'] after:absolute after:-right-2"
+          >
+            Where are you located?
+          </div>
+          <div
+            class="w-full h-0 pt-4 overflow-hidden text-xl duration-500 answer"
+          >
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis,
+            beatae dolores voluptate consequuntur, amet modi molestiae quasi
+            dicta hic id facere quam pariatur a earum fugit sint? Corrupti,
+            doloribus esse.
+          </div>
+        </div>
+      </div>
+    </div>
+ -->
+
+<!-- Project 2 : Modal -->
+<!--
+    <div class="relative h-screen wrapper bg-slate-700">
+      <button
+        id="btn-open"
+        class="absolute h-20 p-2 text-3xl text-gray-200 duration-500 bg-transparent border-4 border-gray-200 rounded-lg shadow-md bottom-10 left-10 w-80 hover:bg-gray-200 hover:text-slate-700"
+      >
+        <p>Where's Our Modal</p>
+      </button>
+      <div
+        id="modal-container"
+        class="fixed top-0 left-0 z-10 hidden w-full h-full bg-slate-900/20"
+      >
+        <div
+          id="modal"
+          class="absolute flex items-center justify-between w-48 h-24 px-6 py-3 text-2xl -translate-x-1/2 -translate-y-1/2 bg-gray-200 rounded-md top-1/2 left-1/2 animate-modal"
+        >
+          <p>Here I am!</p>
+          <div id="btn-close" class="text-5xl text-red-500 cursor-pointer">
+            &times;
+          </div>
+        </div>
+      </div>
+    </div>
+-->
+
+<!-- Project 1 : Qoute Generator -->
+<!--
+    <div
+      id="wrapper"
+      class="flex items-center justify-center h-screen text-center bg-slate-700"
+    >
+      <div id="container" class="w-1/2 h-2/5">
+        <div
+          id="header"
+          class="w-4/6 p-5 mx-auto my-8 text-3xl text-gray-200 border-4 border-gray-200 rounded-md"
+        >
+          <h2>JavaScript Qoute Generator</h2>
+        </div>
+        <div
+          id="main-content"
+          class="grid w-full p-6 bg-gray-300 border-2 shadow-lg rounded-xl h-60 place-content-center"
+        >
+          <div id="text-area" class="text-xl text-slate-800">
+            <span id="quote">
+              "I do the very best I know how - the very best I can; and I mean
+              to keep on doing so until the end."
+            </span>
+          </div>
+          <div id="person" class="mt-4 text-lg uppercase text-slate-600">
+            Abraham Lincoln
+          </div>
+
+          <div id="button-area">
+            <button
+              id="new-quote"
+              class="p-3 mt-4 text-lg text-gray-200 rounded-lg bg-slate-700"
+            >
+              New Quote
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    -->
