@@ -4,6 +4,11 @@
 
 Welcome to my coding portfolio! This repository showcases my learning journey through various small projects leading up to two final projects where I combine **React** with **GSAP** and **three.js** to create interactive, visually compelling web experiences. Each project reflects the concepts and technologies I’ve learned along the way.
 
+> [!caution] redundant node_modules folders
+> Clean `node_modules` folder after finished each project can prune this repo to a manageable size.
+> Since 'explore.exe' and 'pwsh' have bad reputation about removing `node_modules` folder, it is recommended to use npm package `rimraf` to remove `node_modules`.
+> In the directory that contains `node_modules`, execute command `rimraf node_modules`.
+
 ## Final Projects
 
 1. **Interactive Animation with React & GSAP**  
@@ -22,15 +27,19 @@ Welcome to my coding portfolio! This repository showcases my learning journey th
 
 Each of these smaller projects represents a key step in my learning process. They allowed me to build up my skills and experiment with concepts that are critical to my final projects.
 
-1. **HTML & CSS Responsive Design**  
-   A simple responsive webpage to practice the fundamentals of HTML and CSS. This project focuses on modern layout techniques such as Flexbox and CSS Grid.
+1. **HTML & CSS Responsive Design**
+   Get into the fundamentals of HTML and CSS. Primarily focus on modern layout techniques such as Flexbox and CSS Grid.
 
-   **[Link to Project Folder](./responsive-design)**
+- [practice: pricing-panel](./css-pricing-panel/)
+- **[project: omnifood](./project-css-omnifood/)**
 
-2. **JavaScript To-Do App**  
+2. **SASS**  
    A basic to-do list application to practice JavaScript DOM manipulation and state management. It’s a precursor to more complex projects with React.
 
-   **[Link to Project Folder](./todo-app)**
+- **[project: nexter](./project-css-sass-nexter/)**
+- **[project: trillo](./project-css-sass-trillo/)**
+- **[project: natours](./project-css-sass-natours/)**
+- **[project: pixel-rocket](./project-css-sass-pixel-rocket/)**
 
 3. **React State Management & Props**  
    A simple React app where I explored component hierarchy, props, and state management. This project helped solidify my understanding of how React handles data flow.
