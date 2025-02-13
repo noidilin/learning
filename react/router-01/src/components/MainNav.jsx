@@ -1,15 +1,36 @@
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
+import classes from './MainNav.module.css';
 
 function MainNav() {
   return (
-    <header>
+    <header className={classes.header}>
       <nav>
-        <ul>
+        <ul className={classes.list}>
           <li>
-            <Link to='/'>Home</Link>
+            {/* NavLink 
+            - className in NavLink accepts a function, and it will
+              - receive an obj that contains a property 'isActive'
+              - returns a class name based on 'isActive'
+            - that class name will be added to the anchor */}
+            <NavLink
+              to=''
+              end={true}
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              Home
+            </NavLink>
           </li>
           <li>
-            <Link to='/products'>Products</Link>
+            <NavLink
+              to='products'
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              Products
+            </NavLink>
           </li>
         </ul>
       </nav>

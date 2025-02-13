@@ -5,7 +5,10 @@ function Root() {
   return (
     <>
       <MainNav />
-      <Outlet />
+      <main>
+        {/* define where the children route should be placed */}
+        <Outlet />
+      </main>
     </>
   );
 }
