@@ -1,38 +1,30 @@
 import { NavLink } from 'react-router-dom';
+import classes from './EventsNav.module.css';
 
-import classes from './MainNav.module.css';
-
-/* NavLink 
- - className in NavLink accepts a function, and it will
-   - receive an obj that contains a property 'isActive'
-   - returns a class name based on 'isActive'
- - that class name will be added to the anchor */
-
-function MainNav() {
+function EventsNav() {
   return (
     <header className={classes.header}>
       <nav>
         <ul className={classes.list}>
-          <li>
-            {/* end: check if the current path end with '/' */}
-            <NavLink
-              to='/'
-              end={true}
-              className={({ isActive }) =>
-                isActive ? classes.active : undefined
-              }
-            >
-              Home
-            </NavLink>
-          </li>
           <li>
             <NavLink
               to='/events'
               className={({ isActive }) =>
                 isActive ? classes.active : undefined
               }
+              end
             >
-              Events
+              All Events
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to='/events/new'
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              New Event
             </NavLink>
           </li>
         </ul>
@@ -41,4 +33,4 @@ function MainNav() {
   );
 }
 
-export default MainNav;
+export default EventsNav;

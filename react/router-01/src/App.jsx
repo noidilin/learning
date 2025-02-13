@@ -2,8 +2,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './pages/Root';
 import Error from './pages/Error';
 import Home from './pages/Home';
-import Products from './pages/Products';
-import ProductDetail from './pages/ProductDetail';
+import Events from './pages/Events';
+import EventDetail from './pages/EventDetail';
+import NewEvent from './pages/NewEvent';
+import EditEvent from './pages/EditEvent';
+import RootEvent from './pages/RootEvents';
 
 /* setup multiple pages routing in SPA
  * 1. define route (which path)
@@ -23,11 +26,19 @@ const router = createBrowserRouter([
       /* index is the default route that should be displayed
        * if the parent route's path is currently active */
       { index: true, element: <Home /> },
-      /* path that don't start with '/' is relative route
-       * which will be append after the current route path. */
-      { path: 'products', element: <Products /> },
-      // identifier placeholder for useParams to dynamic route
-      { path: 'products/:productId', element: <ProductDetail /> },
+      {
+        /* path that don't start with '/' is relative route
+         * which will be append after the current route path. */
+        path: 'events',
+        element: <RootEvent />,
+        children: [
+          { index: true, element: <Events /> },
+          // identifier placeholder for useParams to dynamic route
+          { path: ':eventId', element: <EventDetail /> },
+          { path: 'new', element: <NewEvent /> },
+          { path: ':eventId/edit', element: <EditEvent /> },
+        ],
+      },
     ],
   },
 ]);

@@ -6,12 +6,13 @@ function Home() {
     <>
       <h1>My Home Page</h1>
       <p>
-        Go to <Link to='products'>the list of products</Link>.
+        Go to <Link to='events'>the list of products</Link>.
       </p>
-      {/* this will send a HTTP request when the link is clicked. */}
+      {/*  this will send a HTTP request when the link is clicked.
       <p>
-        Go to <a href='/products'>products (link with anchor attribute) </a>.
+        Go to <a href='/events'>events (link with anchor attribute) </a>.
       </p>
+      */}
     </>
   );
 }

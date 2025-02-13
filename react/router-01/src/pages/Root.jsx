@@ -6,8 +6,7 @@ function Root() {
     <>
       <MainNav />
       <main>
-        {/* define where the children route should be placed */}
-        <Outlet />
+        <Outlet /> {/* define where the children route should be placed */}
       </main>
     </>
   );
