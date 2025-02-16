@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './pages/Root';
 import Error from './pages/Error';
 import Home from './pages/Home';
-import Events from './pages/Events';
+import Events, { loader as eventsLoader } from './pages/Events';
 import EventDetail from './pages/EventDetail';
 import NewEvent from './pages/NewEvent';
 import EditEvent from './pages/EditEvent';
@@ -32,7 +32,17 @@ const router = createBrowserRouter([
         path: 'events',
         element: <RootEvent />,
         children: [
-          { index: true, element: <Events /> },
+          /* loader:
+           * This func will be executed by react router when this route is visited
+           * even before the page component has been rendered.
+           * The advantage of loader is you can rely on the data being there,
+           * once the page component is being rendered.
+           * Note that higher level route can't access the data returned from loader func. */
+          {
+            index: true,
+            element: <Events />,
+            loader: eventsLoader, // outsource the loader from individual page
+          },
           // identifier placeholder for useParams to dynamic route
           { path: ':eventId', element: <EventDetail /> },
           { path: 'new', element: <NewEvent /> },
