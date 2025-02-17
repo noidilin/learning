@@ -4,8 +4,8 @@
  * - [x] for the current move only, show 'you are at move # ' instead of a button.
  * - [x] rewrite `Board` to use two loops to make the squares instead of hardcoding them.
  * - [x] add a toggle button that lets you sort the moves in either ascending or descending order.
- * - [ ] when someone wins, highlight the three squares that caused the win.
- * - [ ] when no one wins, display a message about the result being a draw.
+ * - [x] when someone wins, highlight the three squares that caused the win.
+ * - [x] when no one wins, display a message about the result being a draw.
  * - [ ] display the location for each move in the format (row, col) in the move history list.
  */
 
@@ -19,6 +19,7 @@ function Game() {
   const [isAscending, setIsAscending] = useState(true);
 
   const xIsNext = currentMove % 2 === 0;
+  const isEnd = currentMove === 9;
   const currentSquares = history[currentMove];
 
   function handleSort() {
@@ -35,7 +36,12 @@ function Game() {
   return (
     <div className='game'>
       <div className='game-board'>
-        <Board xIsNext={xIsNext} squares={currentSquares} onPlay={handlePlay} />
+        <Board
+          xIsNext={xIsNext}
+          isEnd={isEnd}
+          squares={currentSquares}
+          onPlay={handlePlay}
+        />
       </div>
       <div className='game-info'>
         <button onClick={handleSort}>
@@ -67,9 +73,9 @@ function Game() {
   );
 }
 
-function Board({ xIsNext, squares, onPlay }) {
+function Board({ xIsNext, isEnd, squares, onPlay }) {
   function handleClick(i) {
-    if (squares[i] || calculateWinner(squares)) return;
+    if (squares[i] || calResult(squares)) return;
 
     const nextSquares = squares.slice();
     if (xIsNext) nextSquares[i] = 'X';
@@ -81,9 +87,9 @@ function Board({ xIsNext, squares, onPlay }) {
   return (
     <>
       <div className='status'>
-        {calculateWinner(squares)
-          ? `Winner: ${calculateWinner(squares)}`
-          : `Next player: ${xIsNext ? 'X' : 'O'}`}
+        {calResult(squares) && `Winner: ${calResult(squares).winner}`}
+        {!calResult(squares) && !isEnd && `Next: ${xIsNext ? 'X' : 'O'}`}
+        {!calResult(squares) && isEnd && `Game draw`}
       </div>
       {[0, 1, 2].map((row) => (
         <div key={row} className='board-row'>
@@ -94,6 +100,7 @@ function Board({ xIsNext, squares, onPlay }) {
               <Square
                 key={index}
                 value={squares[index]}
+                highlight={calResult(squares)?.line.includes(index)}
                 onSquareClick={() => handleClick(index)}
               />
             );
@@ -104,9 +111,12 @@ function Board({ xIsNext, squares, onPlay }) {
   );
 }
 
-function Square({ value, onSquareClick }) {
+function Square({ value, onSquareClick, highlight }) {
   return (
-    <button className='square' onClick={onSquareClick}>
+    <button
+      onClick={onSquareClick}
+      className={highlight ? 'square bg-emerald-300 text-emerald-50' : 'square'}
+    >
       {value}
     </button>
   );
@@ -116,7 +126,7 @@ function App() {
   return <Game />;
 }
 
-function calculateWinner(squares) {
+function calResult(squares) {
   const lines = [
     [0, 1, 2],
     [3, 4, 5],
@@ -130,7 +140,7 @@ function calculateWinner(squares) {
   for (let i = 0; i < lines.length; i++) {
     const [a, b, c] = lines[i];
     if (squares[a] && squares[a] === squares[b] && squares[a] === squares[c]) {
-      return squares[a];
+      return { winner: squares[a], line: lines[i] };
     }
   }
   return null;
