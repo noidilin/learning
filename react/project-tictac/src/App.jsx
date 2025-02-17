@@ -1,5 +1,14 @@
 /* eslint-disable react/prop-types */
 
+/**
+ * - [x] for the current move only, show 'you are at move # ' instead of a button.
+ * - [x] rewrite `Board` to use two loops to make the squares instead of hardcoding them.
+ * - [ ] add a toggel button that lets you sort the moves in either ascending or descending order.
+ * - [ ] when someone wins, highlight the three squares that caused the win.
+ * - [ ] when no one wins, display a message about the result being a draw.
+ * - [ ] display the location for each move in the format (row, col) in the move history list.
+ */
+
 import { useState } from 'react';
 
 function Game() {
@@ -28,7 +37,9 @@ function Game() {
           {history.map((_squares, move) => (
             <li key={move}>
               <button onClick={() => setCurrentMove(move)}>
-                {move > 0 ? `go to move # ${move}` : `go to game start`}
+                {move === 0 && `go to game start`}
+                {move > 0 && move === currentMove && `you're at move # ${move}`}
+                {move > 0 && move !== currentMove && `go to move # ${move}`}
               </button>
             </li>
           ))}
