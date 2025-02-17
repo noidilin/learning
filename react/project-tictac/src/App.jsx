@@ -6,7 +6,7 @@
  * - [x] add a toggle button that lets you sort the moves in either ascending or descending order.
  * - [x] when someone wins, highlight the three squares that caused the win.
  * - [x] when no one wins, display a message about the result being a draw.
- * - [ ] display the location for each move in the format (row, col) in the move history list.
+ * - [x] display the location for each move in the format (row, col) in the move history list.
  */
 
 import { useState } from 'react';
@@ -15,6 +15,7 @@ function Game() {
   // history initiated with an array that contains a single item, which itself is an array of 9 `null`.
   // each item will snapshot the square in each move
   const [history, setHistory] = useState([Array(9).fill(null)]);
+  const [record, setRecord] = useState([[0, 0]]);
   const [currentMove, setCurrentMove] = useState(0);
   const [isAscending, setIsAscending] = useState(true);
 
@@ -26,10 +27,14 @@ function Game() {
     setIsAscending(!isAscending);
   }
 
-  function handlePlay(nextSquares) {
+  function handlePlay(nextSquares, i) {
+    const row = Math.floor(i / 3) + 1;
+    const col = (i % 3) + 1;
     const nextHistory = [...history.slice(0, currentMove + 1), nextSquares];
+    const nextRecord = [...record.slice(0, currentMove + 1), [row, col]];
 
     setHistory(nextHistory);
+    setRecord(nextRecord);
     setCurrentMove(nextHistory.length - 1);
   }
 
@@ -61,8 +66,10 @@ function Game() {
                   {move === 0 && `go to game start`}
                   {move > 0 &&
                     move === currentMove &&
-                    `you're at move # ${move}`}
-                  {move > 0 && move !== currentMove && `go to move # ${move}`}
+                    `you're at move # ${move} - rol: ${record[move][0]}, col: ${record[move][1]} `}
+                  {move > 0 &&
+                    move !== currentMove &&
+                    `go to move # ${move} - rol: ${record[move][0]}, col: ${record[move][1]} `}
                 </button>
               </li>
             );
@@ -81,7 +88,7 @@ function Board({ xIsNext, isEnd, squares, onPlay }) {
     if (xIsNext) nextSquares[i] = 'X';
     else nextSquares[i] = 'O';
 
-    onPlay(nextSquares);
+    onPlay(nextSquares, i);
   }
 
   return (
