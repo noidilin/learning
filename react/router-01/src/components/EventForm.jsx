@@ -11,16 +11,18 @@ import {
 import classes from './EventForm.module.css';
 
 function EventForm({ method, event }) {
-  const data = useActionData();
+  const data = useActionData(); // retrieve error response that is caused by status 422
   const navigate = useNavigate();
   const navigation = useNavigation();
-
+  // figure out what is the current transition process, and use this boolean
+  // to control save button to prevent multiple submission at one time
   const isSubmitting = navigation.state === 'submitting';
 
   function cancelHandler() {
     navigate('..');
   }
 
+  // <Form> will automatically trigger the action function of the currently active route.
   return (
     <Form method={method} className={classes.form}>
       {data && data.errors && (
@@ -84,12 +86,14 @@ function EventForm({ method, event }) {
 
 export default EventForm;
 
+// outsource Form submission from components into action function
 export async function action({ request, params }) {
-  const method = request.method;
+  // retrieve input value that is captured by react router with `Form`
   const data = await request.formData();
+  const method = request.method;
 
   const eventData = {
-    title: data.get('title'),
+    title: data.get('title'), // parameter is based on each element's name attribute
     image: data.get('image'),
     date: data.get('date'),
     description: data.get('description'),
@@ -98,31 +102,27 @@ export async function action({ request, params }) {
   let url = 'http://localhost:8080/events';
 
   if (method === 'PATCH') {
-    const eventId = params.eventId;
-    url = 'http://localhost:8080/events/' + eventId;
+    url = 'http://localhost:8080/events/' + params.eventId;
   }
 
-  const response = await fetch(url, {
+  const res = await fetch(url, {
+    // retrieve method from 'request' provided by react router
     method: method,
-    headers: {
-      'Content-Type': 'application/json',
-    },
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(eventData),
   });
 
-  if (response.status === 422) {
-    return response;
-  }
+  // this status '422' is a validation protection check from the backend
+  // here, we just return the response from the backend directly at the same page (no redirect)
+  // since redirect will cause user lose their input data.
+  if (res.status === 422) return res; // res can be access by useActionData
 
-  if (!response.ok) {
+  if (!res.ok) {
     // throw json({ message: 'Could not save event.' }, { status: 500 });
-    throw new Response(
-      JSON.stringify({
-        message: 'Could not save event.',
-      }),
-      { status: 500 },
-    );
+    throw new Response(JSON.stringify({ message: 'Could not save event.' }), {
+      status: 500,
+    });
   }
 
-  return redirect('/events');
+  return redirect('/events'); // redirect user to the certain path
 }
