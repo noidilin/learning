@@ -3,7 +3,7 @@ import Root from './pages/Root';
 import Error from './pages/Error';
 import Home from './pages/Home';
 import Events, { loader as eventsLoader } from './pages/Events';
-import EventDetail from './pages/EventDetail';
+import EventDetail, { loader as eventDetailLoader } from './pages/EventDetail';
 import NewEvent from './pages/NewEvent';
 import EditEvent from './pages/EditEvent';
 import RootEvent from './pages/RootEvents';
@@ -43,10 +43,17 @@ const router = createBrowserRouter([
             element: <Events />,
             loader: eventsLoader, // outsource the loader from individual page
           },
-          // identifier placeholder for useParams to dynamic route
-          { path: ':eventId', element: <EventDetail /> },
+          {
+            path: ':eventId', // identifier placeholder for useParams to dynamic route
+            id: 'event-detail', // for `useRouteLoaderData` to access the specific loader
+            loader: eventDetailLoader, // this loader will executed whenever child route is visited
+            // restructure route for 'edit' page to access loader, preventing writing same loader in different place
+            children: [
+              { index: true, element: <EventDetail /> },
+              { path: 'edit', element: <EditEvent /> },
+            ],
+          },
           { path: 'new', element: <NewEvent /> },
-          { path: ':eventId/edit', element: <EditEvent /> },
         ],
       },
     ],
