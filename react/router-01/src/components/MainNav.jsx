@@ -1,6 +1,7 @@
 import { NavLink } from 'react-router-dom';
 
 import classes from './MainNav.module.css';
+import NewsletterSignup from './NewsletterSignup';
 
 /* NavLink 
  - className in NavLink accepts a function, and it will
@@ -35,8 +36,19 @@ function MainNav() {
               Events
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to='/newsletter'
+              className={({ isActive }) =>
+                isActive ? classes.active : undefined
+              }
+            >
+              Newsletter
+            </NavLink>
+          </li>
         </ul>
       </nav>
+      <NewsletterSignup />
     </header>
   );
 }

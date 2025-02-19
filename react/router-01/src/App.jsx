@@ -1,3 +1,11 @@
+// NOTE:
+// 1. config route for certain component
+// 2. handle error with certain component
+// 3. nesting route can access shared data (layout, loader, action, error element...)
+// 4. data fetching and submission with loader and action.
+//   - how to defer data fetching
+//   - useFetch: trigger loader and action without actually navigate to the route
+
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './pages/Root';
 import Error from './pages/Error';
@@ -11,6 +19,7 @@ import NewEvent from './pages/NewEvent';
 import EditEvent from './pages/EditEvent';
 import RootEvent from './pages/RootEvents';
 import { action as manipulateEventAction } from './components/EventForm';
+import Newsletter, { action as newsletterAction } from './pages/Newsletter';
 
 /* setup multiple pages routing in SPA
  * 1. define route (which path)
@@ -68,6 +77,7 @@ const router = createBrowserRouter([
           { path: 'new', element: <NewEvent />, action: manipulateEventAction },
         ],
       },
+      { path: 'newsletter', element: <Newsletter />, action: newsletterAction },
     ],
   },
 ]);
