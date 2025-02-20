@@ -1,11 +1,3 @@
-// NOTE:
-// 1. config route for certain component
-// 2. handle error with certain component
-// 3. nesting route can access shared data (layout, loader, action, error element...)
-// 4. data fetching and submission with loader and action.
-//   - how to defer data fetching
-//   - useFetch: trigger loader and action without actually navigate to the route
-
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Root from './pages/Root';
 import Error from './pages/Error';
@@ -21,36 +13,19 @@ import RootEvent from './pages/RootEvents';
 import { action as manipulateEventAction } from './components/EventForm';
 import Newsletter, { action as newsletterAction } from './pages/Newsletter';
 
-/* setup multiple pages routing in SPA
- * 1. define route (which path)
- * 2. load the route definition
- * 3. link component to route */
-
 // the classic way of create route
 const router = createBrowserRouter([
   {
     path: '/', // acts like a path dependent layout wrapper
     element: <Root />, // render this JSX code when this route is activated
     errorElement: <Error />,
-    /* Root wrapper
-     * 1. define similar layout structure
-     * 2. group similar page into same route */
     children: [
-      /* index is the default route that should be displayed
-       * if the parent route's path is currently active */
+      // index is default displayed route when parent route is active
       { index: true, element: <Home /> },
       {
-        /* path that don't start with '/' is relative route
-         * which will be append after the current route path. */
-        path: 'events',
+        path: 'events', // relative path
         element: <RootEvent />,
         children: [
-          /* loader:
-           * This func will be executed by react router when this route is visited
-           * even before the page component has been rendered.
-           * The advantage of loader is you can rely on the data being there,
-           * once the page component is being rendered.
-           * Note that higher level route can't access the data returned from loader func. */
           {
             index: true,
             element: <Events />,

@@ -61,16 +61,15 @@ async function loadEvents() {
 export async function loader({ params }) {
   const id = params.eventId; // we can access params without react hooks
   return {
-    event: await loadEvent(id), // `await` make sure this data to be loaded before navigating to the page
-    events: loadEvents(), // load this after the page is loaded
+    event: await loadEvent(id), // blocks until event is loaded
+    events: loadEvents(), // returns promise immediately
   };
 }
 
 export async function action({ request, params }) {
   const eventId = params.eventId;
   const res = await fetch('http://localhost:8080/events/' + eventId, {
-    // retrieve method from 'request' provided by react router
-    method: request.method,
+    method: request.method, // retrieve method from 'request' provided by react router
   });
 
   if (!res.ok) {
