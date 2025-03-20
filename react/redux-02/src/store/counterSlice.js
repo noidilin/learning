@@ -1,27 +1,28 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  counter: 0,
-  showCounter: true,
+	counter: 0,
+	showCounter: true,
 };
 
 const counterSlice = createSlice({
-  name: 'counter',
-  initialState,
-  reducers: {
-    increment(state, action) {
-      state.counter += action.payload;
-    },
-    decrement(state, action) {
-      state.counter -= action.payload;
-    },
-    toggleCounter(state) {
-      state.showCounter = !state.showCounter;
-    },
-  },
+	name: "counter",
+	initialState,
+	reducers: {
+		inc(state, action) {
+			state.counter += action.payload;
+		},
+		dec(state, action) {
+			state.counter -= action.payload;
+		},
+		toggle(state) {
+			state.showCounter = !state.showCounter;
+		},
+	},
 });
 
-const counterReducer = counterSlice.reducer;
-
+// the better pattern is to NOT destructure counterActions immediately
+// since there will be code suggestion prompt us the actions in counter
+// when we type `counterActions.`
 export const counterActions = counterSlice.actions;
-export default counterReducer;
+export default counterSlice.reducer;
