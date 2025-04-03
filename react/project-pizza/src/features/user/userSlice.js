@@ -7,6 +7,7 @@ function getPosition() {
   });
 }
 
+// createAsyncThunk will produce 3 additional action types
 export const fetchAddress = createAsyncThunk('user/fetchAddress', async () => {
   // 1) We get the user's geolocation position
   const positionObj = await getPosition();
