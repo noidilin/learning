@@ -1,5 +1,5 @@
 import CheckoutButton from 'features/check-in-out/CheckoutButton';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router';
 import styled from 'styled-components';
 import Button from 'ui/Button';
 import { Flag } from 'ui/Flag';
