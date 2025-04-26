@@ -101,10 +101,10 @@ async function createBookings() {
 }
 
 function Uploader() {
-  const [isPending, setIsPending] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   async function uploadAll() {
-    setIsPending(true);
+    setIsLoading(true);
     // Bookings need to be deleted FIRST
     await deleteBookings();
     await deleteGuests();
@@ -115,14 +115,14 @@ function Uploader() {
     await createCabins();
     await createBookings();
 
-    setIsPending(false);
+    setIsLoading(false);
   }
 
   async function uploadBookings() {
-    setIsPending(true);
+    setIsLoading(true);
     await deleteBookings();
     await createBookings();
-    setIsPending(false);
+    setIsLoading(false);
   }
 
   return (
@@ -140,11 +140,11 @@ function Uploader() {
     >
       <h3>SAMPLE DATA</h3>
 
-      <Button onClick={uploadAll} disabled={isPending}>
+      <Button onClick={uploadAll} disabled={isLoading}>
         Upload ALL
       </Button>
 
-      <Button onClick={uploadBookings} disabled={isPending}>
+      <Button onClick={uploadBookings} disabled={isLoading}>
         Upload bookings ONLY
       </Button>
     </div>
