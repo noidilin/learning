@@ -1,0 +1,113 @@
+@use "./base/reset.scss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Use this CSS to learn some interesting techniques,
+ * in case you're wondering how I built the UI.
+ * Have fun! 😁
+ */
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: Poppins, sans-serif;
+}
+
+/* MAIN */
+.app {
+  // grid-template-columns: 4fr 3fr;
+  // grid-template-rows: auto repeat(3, 15rem) auto;
+
+  /* NOTE This creates the fade in/out animation */
+  // opacity: 0;
+}
+
+// .balance {
+//   grid-column: 1 / span 2;
+// }
+
+/* SUMMARY */
+// .summary {
+//   grid-row: 5 / 6;
+// }
+
+@layer components {
+  /* LOGIN */
+  .login-input {
+    @apply py-2 px-8 text-2xl text-center w-48 rounded-[10rem] mr-4 transition-all duration-300 border-stone-50 border;
+  }
+
+  .login-input:focus {
+    @apply outline-none border border-stone-200;
+  }
+
+  .login-input::placeholder {
+    @apply text-stone-300;
+  }
+
+  /* MOVEMENTS */
+
+  // .movements {
+  //   grid-row: 2 / span 3;
+  // }
+
+  .movements-row {
+    @apply py-9 px-16 flex items-center border-b border-stone-100;
+  }
+
+  .movements-type {
+    @apply text-lg uppercase font-medium text-stone-50 py-1 px-4 rounded-[10rem] mr-8;
+  }
+
+  .movements-type-deposit {
+    @apply bg-gradient-to-tl from-emerald-500 to-emerald-300;
+  }
+
+  .movements-type-withdrawal {
+    @apply bg-gradient-to-tl from-red-600 to-red-300;
+  }
+
+  .movements-date {
+    @apply text-lg uppercase font-medium text-stone-600;
+  }
+
+  .movements-value {
+    @apply text-3xl ml-auto;
+  }
+
+  /* FORM */
+  .form {
+    @apply grid gap-y-2 gap-x-4 grid-cols-[2.5fr_2.5fr_1fr] grid-rows-[auto_auto];
+
+    // grid-template-columns: 2.5fr 2.5fr 1fr;
+    // grid-template-rows: auto auto;
+    // display: grid;
+    // gap: 0.4rem 1rem;
+  }
+
+  /* Exceptions for interest */
+  // .form.form-loan {
+  //   grid-template-columns: 2.5fr 1fr 2.5fr;
+  // }
+
+  // .form-label-loan {
+  //   grid-row: 2;
+  // }
+
+  /* End exceptions */
+  .form-input {
+    @apply w-full border-none bg-stone-50 bg-opacity-40 text-2xl text-center text-stone-800 py-1 px-4 rounded-xl transition-all duration-300 focus:outline-none focus:bg-opacity-60;
+  }
+
+  .form-label {
+    @apply text-xl text-center;
+  }
+
+  .form-btn {
+    @apply border-none rounded-xl text-3xl bg-stone-50 cursor-pointer transition-all duration-300 focus:outline-none focus:bg-opacity-80;
+  }
+}

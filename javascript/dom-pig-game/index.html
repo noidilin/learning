@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Pig Game</title>
+  </head>
+
+  <body
+    class="flex items-center justify-center h-screen font-normal text-stone-700 bg-amber-600"
+  >
+    <main
+      class="relative w-[100rem] h-[60rem] bg-stone-50 bg-opacity-35 shadow-lg rounded-xl overflow-hidden flex"
+    >
+      <section
+        id="player-1"
+        class="flex flex-col items-center flex-auto transition-all p-36 player-active"
+      >
+        <h2
+          class="relative mb-4 text-6xl font-light tracking-widest uppercase"
+          id="name-1"
+        >
+          Player 1
+        </h2>
+        <p class="mb-auto font-light text-orange-700 text-9xl" id="score-1">
+          43
+        </p>
+        <div
+          class="w-2/3 p-8 text-center transition-all bg-orange-700 rounded-lg opacity-80 text-stone-50"
+        >
+          <p class="mb-4 text-3xl uppercase text-stone-200">Current</p>
+          <p class="text-6xl" id="current-1">0</p>
+        </div>
+      </section>
+
+      <section
+        id="player-2"
+        class="flex flex-col items-center flex-auto transition-all p-36"
+      >
+        <h2
+          class="relative mb-4 text-6xl font-light tracking-widest uppercase"
+          id="name-2"
+        >
+          Player 2
+        </h2>
+        <p class="mb-auto font-light text-orange-700 text-9xl" id="score-2">
+          24
+        </p>
+        <div
+          class="w-2/3 p-8 text-center transition-all bg-orange-700 rounded-lg opacity-80 text-stone-50"
+        >
+          <p class="mb-4 text-3xl uppercase text-stone-200">Current</p>
+          <p class="text-6xl" id="current-2">0</p>
+        </div>
+      </section>
+
+      <img
+        src="./src/asset/dice-5.png"
+        id="dice"
+        alt="Playing dice"
+        class="absolute h-40 -translate-x-1/2 shadow-2xl dice left-1/2 top-72"
+      />
+      <button id="btnNew" class="btn top-16">🔄 New game</button>
+      <button id="btnRoll" class="btn top-[39rem]">🎲 Roll dice</button>
+      <button id="btnHold" class="btn top-[46rem]">📥 Hold</button>
+      <script type="module" src="/src/main.js"></script>
+    </main>
+  </body>
+</html>

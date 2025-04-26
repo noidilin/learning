@@ -1,0 +1,159 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="shortcut icon" type="image/png" href="./src/asset/icon.png" />
+
+    <link
+      href="https://fonts.googleapis.com/css?family=Poppins:400,500,600&display=swap"
+      rel="stylesheet"
+    />
+
+    <title>Bankist</title>
+  </head>
+  <body class="h-screen p-8 text-stone-700 bg-stone-100">
+    <!-- TOP NAVIGATION -->
+    <nav class="flex items-center justify-between px-8 py-0">
+      <p id="welcome" class="text-3xl font-medium">Log in to get started</p>
+      <img src="./src/asset/logo.png" alt="Logo" class="h-20" />
+      <form class="flex">
+        <input
+          id="inputLoginUsername"
+          type="text"
+          placeholder="user"
+          class="login-input login__input--user"
+        />
+        <!-- In practice, use type="password" -->
+        <input
+          id="inputLoginPin"
+          type="text"
+          placeholder="PIN"
+          maxlength="4"
+          class="login-input login__input--pin"
+        />
+        <button
+          id="btnLogin"
+          class="text-4xl transition-all bg-transparent border-none cursor-pointer hover:outline-none hover:text-stone-500 focus:outline-none focus:text-stone-500"
+        >
+          &rarr;
+        </button>
+      </form>
+    </nav>
+
+    <main
+      id="app"
+      class="grid-cols-[4fr_3fr] grid-rows-[auto_repeat(3,15rem)_auto] relative max-w-[100rem] my-16 mx-auto grid gap-8 transition-all duration-1000 opacity-0"
+    >
+      <!-- BALANCE -->
+      <div class="flex items-end justify-between col-span-2 col-start-1 mb-8">
+        <div>
+          <p class="-mb-1 text-4xl font-medium">Current balance</p>
+          <p class="text-2xl text-stone-500">
+            As of <span id="labelDate" class="date">05/03/2037</span>
+          </p>
+        </div>
+        <p id="labelBalance" class="font-normal text-7xl">0000€</p>
+      </div>
+
+      <!-- MOVEMENTS -->
+      <div
+        id="movements"
+        class="row-span-3 row-start-2 overflow-scroll bg-stone-50 rounded-2xl"
+      >
+        <div class="movements-row">
+          <div class="movements-type movements-type-deposit">2 deposit</div>
+          <div class="movements-date">3 days ago</div>
+          <div class="movements-value">4 000€</div>
+        </div>
+        <div class="movements-row">
+          <div class="movements-type movements-type-withdrawal">
+            1 withdrawal
+          </div>
+          <div class="movements-date">24/01/2037</div>
+          <div class="movements-value">-378€</div>
+        </div>
+      </div>
+
+      <!-- SUMMARY -->
+      <div class="flex items-baseline row-start-5 row-end-6 px-1 py-0 mt-4">
+        <p class="mr-3 text-xl font-medium uppercase">In</p>
+        <p id="labelSumIn" class="mr-10 text-4xl text-emerald-500">0000€</p>
+        <p class="mr-3 text-xl font-medium uppercase">Out</p>
+        <p id="labelSumOut" class="mr-10 text-4xl text-red-600">0000€</p>
+        <p class="mr-3 text-xl font-medium uppercase">Interest</p>
+        <p id="labelSumInterest" class="mr-10 text-4xl text-emerald-500">
+          0000€
+        </p>
+        <button
+          id="btnSort"
+          class="ml-auto text-xl font-medium bg-transparent border-none cursor-pointer hover:outline-none focus:outline-none hover:text-stone-500 focus:text-stone-500"
+        >
+          &downarrow; SORT
+        </button>
+      </div>
+
+      <!-- OPERATION: TRANSFERS -->
+      <div
+        class="px-16 py-12 rounded-2xl text-stone-800 bg-gradient-to-tl from-yellow-500 to-yellow-300"
+      >
+        <h2 class="mb-6 text-3xl font-semibold text-stone-800">
+          Transfer money
+        </h2>
+        <form class="form form--transfer">
+          <input id="inputTransferTo" type="text" class="form-input" />
+          <input id="inputTransferAmount" type="number" class="form-input" />
+          <button id="btnTransfer" class="form-btn">&rarr;</button>
+          <label class="form-label">Transfer to</label>
+          <label class="form-label">Amount</label>
+        </form>
+      </div>
+
+      <!-- OPERATION: LOAN -->
+      <div
+        class="px-16 py-12 rounded-2xl text-stone-800 bg-gradient-to-tl from-emerald-500 to-emerald-300"
+      >
+        <h2 class="mb-6 text-3xl font-semibold text-stone-800">Request loan</h2>
+        <form class="form grid-cols-[2.5fr_1fr_2.5fr]">
+          <input id="inputLoanAmount" type="number" class="form-input" />
+          <button id="btnLoan" class="form-btn">&rarr;</button>
+          <label class="row-start-2 form-label">Amount</label>
+        </form>
+      </div>
+
+      <!-- OPERATION: CLOSE -->
+      <div
+        class="px-16 py-12 rounded-2xl text-stone-800 bg-gradient-to-tl from-red-600 to-red-300"
+      >
+        <h2 class="mb-6 text-3xl font-semibold text-stone-800">
+          Close account
+        </h2>
+        <form class="form form--close">
+          <input id="inputCloseUsername" type="text" class="form-input" />
+          <input
+            id="inputClosePin"
+            type="password"
+            maxlength="6"
+            class="form-input"
+          />
+          <button id="btnClose" class="form-btn">&rarr;</button>
+          <label class="form-label">Confirm user</label>
+          <label class="form-label">Confirm PIN</label>
+        </form>
+      </div>
+
+      <!-- LOGOUT TIMER -->
+      <p class="px-1 py-0 mt-8 text-xl text-right">
+        You will be logged out in
+        <span id="timer" class="font-semibold">05:00</span>
+      </p>
+    </main>
+
+    <!-- <footer>
+      &copy; by Jonas Schmedtmann. Don't claim as your own :)
+    </footer> -->
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
