@@ -1,16 +1,16 @@
 import { Link, Outlet } from 'react-router-dom';
 
-import Header from '../Header.jsx';
-import EventsIntroSection from './EventsIntroSection.jsx';
-import FindEventSection from './FindEventSection.jsx';
-import NewEventsSection from './NewEventsSection.jsx';
+import Header from '../Header';
+import EventsIntroSection from './EventsIntroSection';
+import FindEventSection from './FindEventSection';
+import NewEventsSection from './NewEventsSection';
 
 export default function Events() {
   return (
     <>
       <Outlet />
       <Header>
-        <Link to="/events/new" className="button">
+        <Link to='/events/new' className='button'>
           New Event
         </Link>
       </Header>

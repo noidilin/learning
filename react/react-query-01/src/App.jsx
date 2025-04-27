@@ -3,12 +3,13 @@ import {
   RouterProvider,
   createBrowserRouter,
 } from 'react-router-dom';
+import { QueryClientProvider } from '@tanstack/react-query';
 
-import Events from './components/Events/Events.jsx';
-import EventDetails from './components/Events/EventDetails.jsx';
-import NewEvent from './components/Events/NewEvent.jsx';
-import EditEvent from './components/Events/EditEvent.jsx';
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import EditEvent from './components/Events/EditEvent';
+import EventDetails from './components/Events/EventDetails';
+import Events from './components/Events/Events';
+import NewEvent from './components/Events/NewEvent';
+import { queryClient } from './util/http';
 
 const router = createBrowserRouter([
   { path: '/', element: <Navigate to='/events' /> },
@@ -23,8 +24,6 @@ const router = createBrowserRouter([
     children: [{ path: '/events/:id/edit', element: <EditEvent /> }],
   },
 ]);
-
-const queryClient = new QueryClient();
 
 function App() {
   return (
