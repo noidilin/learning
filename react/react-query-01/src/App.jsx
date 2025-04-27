@@ -5,10 +5,13 @@ import {
 } from 'react-router-dom';
 import { QueryClientProvider } from '@tanstack/react-query';
 
-import EditEvent from './components/Events/EditEvent';
-import EventDetails from './components/Events/EventDetails';
 import Events from './components/Events/Events';
+import EventDetails from './components/Events/EventDetails';
 import NewEvent from './components/Events/NewEvent';
+import EditEvent, {
+  loader as editEventLoader,
+  action as editEventAction,
+} from './components/Events/EditEvent';
 import { queryClient } from './util/http';
 
 const router = createBrowserRouter([
@@ -21,7 +24,14 @@ const router = createBrowserRouter([
   {
     path: '/events/:id',
     element: <EventDetails />,
-    children: [{ path: '/events/:id/edit', element: <EditEvent /> }],
+    children: [
+      {
+        path: '/events/:id/edit',
+        element: <EditEvent />,
+        loader: editEventLoader,
+        action: editEventAction,
+      },
+    ],
   },
 ]);
 
