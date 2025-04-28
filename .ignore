@@ -1,0 +1,6 @@
+# ignore files configuration for ripgrep and fd
+
+.DS_Store
+.git/
+.trash/
+.final/
