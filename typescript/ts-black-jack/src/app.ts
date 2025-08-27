@@ -27,6 +27,19 @@ while (balance > 0) {
 
   const playerValue = getHandValue(playerHand);
   const dealerValue = getHandValue(dealerHand);
+
+  console.log(`Your hand: ${getStrHand(playerHand)} (Total: ${playerValue})`);
+  if (playerValue === 21) {
+    balance += bet * 2.5;
+    console.log(`Blackjack! You won $${bet * 2.5}`);
+    continue;
+  } else if (dealerValue === 21) {
+    console.log(`Dealer's hand: ${getStrHand(dealerHand)}, (Total: 21)`);
+    console.log("Dealer has Blackjack, you lost...");
+    continue;
+  }
+  console.log(`Dealer's hand: ${getStrHand(dealerHand, true)}`);
+
 }
 
 console.log("You ran out of money!");

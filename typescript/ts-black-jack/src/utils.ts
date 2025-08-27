@@ -46,4 +46,14 @@ export function getBet(balance: number): number {
 
 // returns a string representation of the hand
 export function getStrHand(hand: ICard[], hideSecondCard: boolean = false): string {
+  let str = '';
+  for (const [index, card] of hand.entries()) {
+    if (index !== 0) str += ', '
+    if (index === 1 && hideSecondCard) {
+      str += '[hidden]'
+      break
+    }
+    str += `${card.getName()}${card.suit}`
+  }
+  return str;
 }
