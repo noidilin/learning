@@ -19,6 +19,9 @@ while (balance > 0) {
   console.log(`\nPlayer funds $${balance}`);
   const bet = getBet(balance);
   balance -= bet;
+
+  // Deal the cards
+  deck.reset();
 }
 
 console.log("You ran out of money!");
