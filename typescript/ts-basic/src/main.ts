@@ -19,7 +19,16 @@ function renderTask(task: Task): void {
   // create: list
   const taskElement = document.createElement('li');
   taskElement.textContent = task.description;
+  // create: checkbox
+  const taskCheckbox = document.createElement('input');
+  taskCheckbox.type = 'checkbox';
+  taskCheckbox.checked = task.isCompleted;
+  taskCheckbox.addEventListener('change', () => {
+    task.isCompleted = !task.isCompleted;
+    updateStorage();
+  });
   // render
+  taskElement.appendChild(taskCheckbox);
   taskListElement?.appendChild(taskElement);
 }
 
