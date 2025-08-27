@@ -4,6 +4,10 @@ const prompt = promptSync();
 
 // returns whether the player will hit or stand
 export function getDecision(): "hit" | "stand" {
+  while (true) {
+    const decision = prompt('Your action: (hit/stand): ').toLowerCase()
+    if (decision === 'stand' || decision === 'hit') return decision
+  }
 }
 
 // returns the numeric value of a hand
