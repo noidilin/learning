@@ -24,6 +24,9 @@ while (balance > 0) {
   deck.reset();
   playerHand = deck.deal(2);
   dealerHand = deck.deal(2);
+
+  const playerValue = getHandValue(playerHand);
+  const dealerValue = getHandValue(dealerHand);
 }
 
 console.log("You ran out of money!");
