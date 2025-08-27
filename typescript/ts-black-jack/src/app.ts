@@ -65,8 +65,22 @@ while (balance > 0) {
 
   console.log(`\nPlayer's turn`);
   const finalPlayerValue = playerTurn(playerHand, deck);
+  if (finalPlayerValue > 21) {
+    console.log("You bust and lost...");
+    continue;
+  }
   console.log(`\nDealer's turn`);
   const finalDealerValue = dealerTurn(dealerHand, deck);
+  if (finalDealerValue > 21 || finalPlayerValue > finalDealerValue) {
+    balance += bet * 2;
+    console.log(`You won $${bet * 2}`);
+  }
+  else if (finalDealerValue === finalPlayerValue) {
+    balance += bet
+    console.log("Push (tie).")
+  } else {
+    console.log("You lost to the dealer.")
+  }
 }
 
 console.log("You ran out of money!");
