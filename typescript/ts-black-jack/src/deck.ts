@@ -26,6 +26,11 @@ class Deck implements IDealable {
   }
 
   deal(num: number): Card[] {
+    const dealtCards: Card[] = []
+    for (let i = 0; i < num; i++) {
+      dealtCards.push(this.deck.pop()!) // pop() returns undefined if array is empty.
+    }
+    return dealtCards
   }
 }
 
