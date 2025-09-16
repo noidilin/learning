@@ -1,0 +1,63 @@
+import { ICard } from "./types";
+import promptSync from "prompt-sync";
+const prompt = promptSync();
+
+// returns whether the player will hit or stand
+export function getDecision(): "hit" | "stand" {
+  while (true) {
+    const decision = prompt('Your action: (hit/stand): ').toLowerCase()
+    if (decision === 'stand' || decision === 'hit') return decision
+  }
+}
+
+// returns the numeric value of a hand
+export function getHandValue(cards: ICard[]): number {
+  let value = 0
+  let aces = 0
+  for (const card of cards) {
+    if (card.value === 1) {
+      aces++
+      continue
+    }
+    value += Math.min(card.value, 10)
+  }
+  if (aces === 0) return value
+  if (value >= 11) return value + aces
+  return value + 11 + (aces - 1)
+}
+
+export function shuffleArray<T>(array: T[]) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1)); // generate a random index from 0 to i
+    [array[i], array[j]] = [array[j], array[i]]; // swap elements at indices i and j
+  }
+  return array;
+}
+
+// returns the bet the player is making
+export function getBet(balance: number): number {
+  while (true) {
+    const response = prompt("Enter your bet: ");
+    try {
+      const bet = parseInt(response)
+      if (bet > 0 && bet <= balance) return bet;
+      console.log('Invalid bet.')
+    } catch {
+      console.log('Please enter a valid number.')
+    }
+  }
+}
+
+// returns a string representation of the hand
+export function getStrHand(hand: ICard[], hideSecondCard: boolean = false): string {
+  let str = '';
+  for (const [index, card] of hand.entries()) {
+    if (index !== 0) str += ', '
+    if (index === 1 && hideSecondCard) {
+      str += '[hidden]'
+      break
+    }
+    str += `${card.getName()}${card.suit}`
+  }
+  return str;
+}
